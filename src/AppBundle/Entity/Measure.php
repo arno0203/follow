@@ -8,6 +8,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity
@@ -39,8 +41,120 @@ class Measure
      *
      * @ORM\ManyToOne(targetEntity="MeasureType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="measureTypeId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="measureType_id", referencedColumnName="id")
      * })
      */
     protected $measureType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Member")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    protected $member;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set value
+     *
+     * @param integer $value
+     *
+     * @return Measure
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return integer
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Measure
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set measureType
+     *
+     * @param \AppBundle\Entity\MeasureType $measureType
+     *
+     * @return Measure
+     */
+    public function setMeasureType(\AppBundle\Entity\MeasureType $measureType = null)
+    {
+        $this->measureType = $measureType;
+
+        return $this;
+    }
+
+    /**
+     * Get measureType
+     *
+     * @return \AppBundle\Entity\MeasureType
+     */
+    public function getMeasureType()
+    {
+        return $this->measureType;
+    }
+
+    /**
+     * Set member
+     *
+     * @param \AppBundle\Entity\Member $member
+     *
+     * @return Measure
+     */
+    public function setMember(\AppBundle\Entity\Member $member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * Get member
+     *
+     * @return \AppBundle\Entity\Member
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
 }

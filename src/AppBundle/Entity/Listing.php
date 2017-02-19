@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"sex" = "Sex"}, {"eventType" = "EventType"}, {"fightingType" = "FightingType"}, {"measureType" = "MeasureType"})
+ * @ORM\DiscriminatorMap({"sex" = "Sex", "eventType" = "EventType", "fightingType" = "FightingType", "measureType" = "MeasureType"})
  */
 class Listing
 {
