@@ -46,7 +46,7 @@ class Event
      *
      * @ORM\ManyToOne(targetEntity="EventType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="eventTypeId", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="eventType_id", referencedColumnName="id")
      * })
      */
     protected $eventType;
