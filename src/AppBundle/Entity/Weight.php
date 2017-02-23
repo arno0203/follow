@@ -51,6 +51,16 @@ class Weight
      */
     protected $sex;
 
+    /**
+     * @var \Age
+     *
+     * @ORM\ManyToOne(targetEntity="Age")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="age_id", referencedColumnName="id")
+     * })
+     */
+    protected $age;
+
 
     /**
      * Get id
@@ -156,5 +166,29 @@ class Weight
     public function getSex()
     {
         return $this->sex;
+    }
+
+    /**
+     * Set age
+     *
+     * @param \AppBundle\Entity\Age $age
+     *
+     * @return Weight
+     */
+    public function setAge(\AppBundle\Entity\Age $age = null)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return \AppBundle\Entity\Age
+     */
+    public function getAge()
+    {
+        return $this->age;
     }
 }
