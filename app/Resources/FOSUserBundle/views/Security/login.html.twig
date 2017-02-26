@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    '@AppBundle/Resources/public/css/matrix-login.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@AppBundle/Resources/public/js/matrix.login.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body %}
+<div id="loginbox">
+    <form id="loginform" class="form-vertical" action="{{ path("fos_user_security_check") }}" method="post">
+        {% if error %}
+            <div class="alert alert-danger"
+                 role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        {% endif %}
+        <div class="control-group normal_text"><h3><img src="{{ asset('bundles/app/img/logo.png') }}" alt="Logo"/></h3></div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"> </i></span>
+                    <input type="text" id="username" name="_username"
+                           placeholder="{{ 'security.login.username'|trans }}" required="required" autofocus/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_ly"><i class="icon-lock"></i></span>
+                    <input type="password" id="password" class="form-control" name="_password" required="required"
+                           placeholder="{{ 'security.login.password'|trans }}" />
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-left"><input type="checkbox" value="remember-me">{{ 'security.login.remember_me'|trans }}</span>
+                <span class="pull-right">
+                     <input type="submit" id="_submit" name="_submit" class="btn btn-success" value="{{ 'security.login.submit'|trans }}" />
+                </span>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

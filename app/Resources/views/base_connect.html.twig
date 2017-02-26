@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Follow{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+            'bundles/app/css/bootstrap.min.css'
+            'bundles/app/css/bootstrap-responsive.min.css'
+            'bundles/app/css/matrix-style.css'
+            'bundles/app/css/matrix-media.css'
+            'bundles/app/css/font-awesome.css'
+            'bundles/app/css/jquery.gritter.css'%}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    {% endblock %}
+</head>
+<body>
+{% block header_part %}
+    <!--Header-part-->
+    <div id="header">
+        <h1><a href="dashboard.html">Matrix Admin</a></h1>
+    </div>
+    <!--close-Header-part-->
+{% endblock %}
+
+{% include '::topheadermenu.html.twig' %}
+
+{% block start_top_search %}
+    <!--start-top-serch-->
+    <div id="search">
+        <input type="text" placeholder="Search here..."/>
+        <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    </div>
+    <!--close-top-serch-->
+{% endblock %}
+
+{% include '::sidebar.html.twig' %}
+
+    <div id="content">
+        {% include '::breadcrums.html.twig' %}
+        {% block body %}{% endblock %}
+    </div>
+
+{% block footer %}
+    <!--Footer-part-->
+    <div class="row-fluid">
+        <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
+    </div>
+    <!--end-Footer-part-->
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts 'bundles/app//js/jquery.min.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        // This function is called from the pop-up menus to transfer to
+        // a different page. Ignore if the value returned is a null string:
+        function goPage (newURL) {
+
+            // if url is empty, skip the menu dividers and reset the menu selection to default
+            if (newURL != "") {
+
+                // if url is "-", it is this page -- reset the menu:
+                if (newURL == "-" ) {
+                    resetMenu();
+                }
+                // else, send page to designated URL
+                else {
+                    document.location.href = newURL;
+                }
+            }
+        }
+
+        // resets the menu selection upon entry to this page:
+        function resetMenu() {
+            document.gomenu.selector.selectedIndex = 2;
+        }
+    </script>
+{% endblock %}
+</body>
+</html>

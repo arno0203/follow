@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Follow{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block stylesheets %}
+        {% stylesheets
+            '@AppBundle/Resources/public/css/bootstrap.min.css'
+            '@AppBundle/Resources/public/css/bootstrap-responsive.min.css'
+            '@AppBundle/Resources/public/css/matrix-style.css'
+            '@AppBundle/Resources/public/css/matrix-media.css'
+            '@AppBundle/Resources/public/css/font-awesome.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    {% endblock %}
+</head>
+<body>
+<div id="wrapper">
+    <div id="container">
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    </div>
+</div>
+{% block javascripts %}
+    {% javascripts '@AppBundle/Resources/public/js/jquery.min.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
 </html>
