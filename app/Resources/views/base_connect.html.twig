@@ -40,7 +40,13 @@
 {% include '::sidebar.html.twig' %}
 
     <div id="content">
-        {% include '::breadcrums.html.twig' %}
+        {% block breadscrums %}
+            <!--breadcrumbs-->
+            <div id="content-header">
+                <div id="breadcrumb"> <a href="{{ url('app_home') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> {{ 'Home'|trans }}</a></div>
+            </div>
+            <!--End-breadcrumbs-->
+        {% endblock %}
         {% block body %}{% endblock %}
     </div>
 

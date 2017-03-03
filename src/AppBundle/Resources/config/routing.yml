@@ -1,0 +1,7 @@
+app_home:
+    path:      /
+    defaults: { _controller: AppBundle:Default:index }
+
+app_judoka_list:
+    path:      /members
+    defaults: { _controller: AppBundle:Members:list }
