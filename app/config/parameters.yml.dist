@@ -18,3 +18,5 @@ parameters:
     mailer_sender_name: arno
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    avatar_directory: '%kernel.root_dir%/../web/uploads/avatars'

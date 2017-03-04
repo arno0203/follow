@@ -2,8 +2,11 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\DataTransformer\MemberTransformer;
+use AppBundle\Form\DataTransformer\NameTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -20,12 +23,15 @@ class MemberType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
-            ->add('birthday', DateType::class)
-            ->add('avatar', FileType::class)
-            ->add('sex', EntityType::class, array('class' => 'AppBundle\Entity\Sex', 'multiple' => false, 'expanded' => true, 'choice_label' => 'lib' ))
+        $builder->add('firstName', TextType::class, array('label' => 'Prénom', 'required'=> true))
+            ->add('lastName', TextType::class, array('label' => 'Nom de famille', 'required'=> true))
+            ->add('birthday', BirthdayType::class, array('widget' => 'single_text', 'label' => 'Date de naissance', 'required'=> true))
+            ->add('sex', EntityType::class, array('label'=> 'Sexe', 'class' => 'AppBundle\Entity\Sex', 'multiple' => false, 'expanded' => true, 'choice_label' => 'lib' ))
+            ->add('avatar', FileType::class, array('required'=> false))
             ->add('save', SubmitType::class);
+
+        $builder->get('firstName')->addModelTransformer(new NameTransformer());
+        $builder->get('lastName')->addModelTransformer(new NameTransformer());
     }
 
     /**

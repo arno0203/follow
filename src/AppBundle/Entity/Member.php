@@ -44,7 +44,7 @@ class Member
 
     /**
      * @var string $avatar
-     * @ORM\Column(name="avatar", type="string", length=250)
+     * @ORM\Column(name="avatar", type="string", length=250, nullable=true)
      */
     protected $avatar;
 
