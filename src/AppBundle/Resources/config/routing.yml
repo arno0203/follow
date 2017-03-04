@@ -5,3 +5,7 @@ app_home:
 app_judoka_list:
     path:      /members
     defaults: { _controller: AppBundle:Members:list }
+
+app_judoka_add:
+    path:      /members/add
+    defaults: { _controller: AppBundle:Members:add }

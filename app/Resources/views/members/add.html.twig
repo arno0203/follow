@@ -1,0 +1,25 @@
+{% extends '::base_connect.html.twig' %}
+
+{% block breadscrums %}
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"><a href="{{ url('app_home') }}" title="Go to Home" class="tip-bottom"><i
+                        class="icon-home"></i> {{ 'Home'|trans }}</a> <a
+                    href="{{ url('app_judoka_list') }}">{{ 'Judokas'|trans }}</a> <a href="#"
+                                                                                     class="current">{{ 'Ajouter un membre'|trans }}</a>
+        </div>
+        <h1>{{ 'Judokas'|trans }}</h1>
+    </div>
+    <!--End-breadcrumbs-->
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <hr>
+
+        <div class="well">
+            {% include 'form/member.html.twig' %}
+        </div>
+    </div>
+
+{% endblock %}
