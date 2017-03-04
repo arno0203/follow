@@ -9,7 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 class MembersController extends Controller
 {
     public function listAction(){
-        return $this->render('members/list.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Member');
+        $members = $repository->findAll();
+
+        return $this->render('members/list.html.twig', array('members' => $members));
     }
 
     public function addAction(Request$request){
