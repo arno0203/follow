@@ -13,8 +13,8 @@ ALTER TABLE weight AUTO_INCREMENT=1;
 INSERT INTO `sex`
 	(`id`,`lib`,`cod`,`ordre`,`actif`,`selected`)
 VALUES
-	(null, 'Masculin', 'M', 1, 1,1),
-	(null, 'Féminin', 'F', 2, 1,0);
+	(null, 'Homme', 'H', 1, 1,1),
+	(null, 'Femme', 'F', 2, 1,0);
 
 INSERT INTO `age`
 	(`id`,`name`,`min`,`max`)

@@ -21,13 +21,14 @@ class MembersController extends Controller
 
         if ($request->isMethod('POST') && $formMember->handleRequest($request)->isValid()) {
             $file = $member->getAvatar();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move(
-                $this->getParameter('avatar_directory'),
-                $fileName
-            );
-            $member->setAvatar($fileName);
-
+            if(!empty($file)) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('avatar_directory'),
+                    $fileName
+                );
+                $member->setAvatar($fileName);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($member);
             $em->flush();

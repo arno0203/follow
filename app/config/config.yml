@@ -46,6 +46,8 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     cache: false
+    globals:
+        avatar_directory: "%avatar_directory%"
 
 # Doctrine Configuration
 doctrine:
@@ -84,3 +86,14 @@ fos_user:
     from_email:
         address: "%mailer_address%"
         sender_name: "%mailer_sender_name%"
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 50
+            filters:
+                thumbnail: { size: [30,30], mode: outbound }

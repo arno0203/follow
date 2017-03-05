@@ -33,3 +33,5 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+web_profiler :
+    intercept_redirects : false

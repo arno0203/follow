@@ -53,12 +53,16 @@
                         <tbody>
                         {% for member in members %}
                             <tr class="gradeX">
-                                <td></td>
+                                {% set img = 'uploads/avatars/'~member.avatar  %}
+                                <td><img src="{{ img | imagine_filter('my_thumb') }}" /></td>
                                 <td>{{ member.firstName }}</td>
                                 <td>{{ member.lastName }}</td>
                                 <td>{{ member.birthday.format('d/m/Y') }}</td>
                                 <td>{{ member.sex.lib }}</td>
-                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-mini btn-info"><span class="icon-eye-open"></span></a>&nbsp;
+                                    <a href=""  class="btn btn-mini btn-warning"><span class="icon-edit"></span></a>&nbsp;
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
