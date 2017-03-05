@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MembersController extends Controller
 {
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction(){
         $repository = $this->getDoctrine()->getRepository('AppBundle:Member');
         $members = $repository->findAll();
@@ -15,7 +18,11 @@ class MembersController extends Controller
         return $this->render('members/list.html.twig', array('members' => $members));
     }
 
-    public function addAction(Request$request){
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function addAction(Request $request){
         $member = new Member();
         $formMember = $this->get('form.factory')->create(MemberType::class, $member);
 
@@ -41,5 +48,12 @@ class MembersController extends Controller
         return $this->render('members/add.html.twig', array(
             'form' => $formMember->createView(),
         ));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function updateAction(Request $request){
+
     }
 }

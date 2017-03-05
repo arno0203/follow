@@ -53,8 +53,12 @@
                         <tbody>
                         {% for member in members %}
                             <tr class="gradeX">
-                                {% set img = 'uploads/avatars/'~member.avatar  %}
-                                <td><img src="{{ img | imagine_filter('my_thumb') }}" /></td>
+                                {% if member.avatar is empty %}
+                                    {% set img = 'uploads/avatars/avatar-'~member.sex.cod~'.jpg'  %}
+                                {% else %}
+                                    {% set img = 'uploads/avatars/'~member.avatar  %}
+                                {% endif %}
+                                <td><img class="img-circle" src="{{ img | imagine_filter('my_thumb') }}" /></td>
                                 <td>{{ member.firstName }}</td>
                                 <td>{{ member.lastName }}</td>
                                 <td>{{ member.birthday.format('d/m/Y') }}</td>
