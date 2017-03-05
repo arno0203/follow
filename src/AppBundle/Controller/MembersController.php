@@ -55,5 +55,34 @@ class MembersController extends Controller
      */
     public function updateAction(Request $request){
 
-    }
+//        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Member');
+            $member = $repository->find($request->get('id', 0));
+            $formMember = $this->get('form.factory')->create(MemberType::class, $member);
+
+            if ($request->isMethod('POST') && $formMember->handleRequest($request)->isValid()) {
+                $file = $member->getAvatar();
+                if(!empty($file)) {
+                    $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                    $file->move(
+                        $this->getParameter('avatar_directory'),
+                        $fileName
+                    );
+                    $member->setAvatar($fileName);
+                }
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($member);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+                return $this->redirectToRoute('app_judoka_list');
+            }
+
+            return $this->render('members/add.html.twig', array(
+                'form' => $formMember->createView(),
+            ));
+
+        }
+//    }
 }

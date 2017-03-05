@@ -9,3 +9,7 @@ app_judoka_list:
 app_judoka_add:
     path:      /members/add
     defaults: { _controller: AppBundle:Members:add }
+
+app_judoka_update:
+    path:      /members/update
+    defaults: { _controller: AppBundle:Members:update }

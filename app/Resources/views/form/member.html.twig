@@ -1,3 +1,9 @@
 {% block form %}
+    {% if form.avatar.vars.data is null %}
+        {% set img = 'uploads/avatars/avatar-'~form.sex.vars.data.cod~'.jpg'  %}
+    {% else %}
+        {% set img = 'uploads/avatars/'~form.avatar.vars.data.filename  %}
+    {% endif %}
+    <img class="img-circle" src="{{ img | imagine_filter('my_profile') }}" />
     {{ form(form) }}
 {% endblock %}

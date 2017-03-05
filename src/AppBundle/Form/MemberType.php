@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\DataTransformer\FileTransformer;
 use AppBundle\Form\DataTransformer\MemberTransformer;
 use AppBundle\Form\DataTransformer\NameTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,6 +19,17 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class MemberType extends AbstractType
 {
+//    private $avatarDirectory;
+//
+//    /**
+//     * MemberType constructor.
+//     * @param $avatarDirectory
+//     */
+//    public function __construct($avatarDirectory)
+//    {
+//        $this->avatarDirectory = $avatarDirectory;
+//    }
+
     /**
      * {@inheritdoc}
      */
@@ -32,6 +44,7 @@ class MemberType extends AbstractType
 
         $builder->get('firstName')->addModelTransformer(new NameTransformer());
         $builder->get('lastName')->addModelTransformer(new NameTransformer());
+        $builder->get('avatar')->addModelTransformer(new FileTransformer($this->avatarDirectory));
     }
 
     /**
