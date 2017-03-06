@@ -1,9 +1,62 @@
 {% block form %}
-    {% if form.avatar.vars.data is null %}
-        {% set img = 'uploads/avatars/avatar-'~form.sex.vars.data.cod~'.jpg'  %}
-    {% else %}
-        {% set img = 'uploads/avatars/'~form.avatar.vars.data.filename  %}
-    {% endif %}
-    <img class="img-circle" src="{{ img | imagine_filter('my_profile') }}" />
-    {{ form(form) }}
+    <div class="row-fluid">
+    <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>Personal-info</h5>
+            </div>
+            <div class="widget-content nopadding">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="row-fluid">
+                    <div class="span2 control-group">
+                        {% if form.avatar.vars.data is null %}
+                            {% set img = 'uploads/avatars/avatar-'~form.sex.vars.data.cod~'.jpg' %}
+                        {% else %}
+                            {% set img = 'uploads/avatars/'~form.avatar.vars.data.filename %}
+                        {% endif %}
+                        <label class="control-label"><img class="img-circle" src="{{ img | imagine_filter('my_profile') }}"/></label>
+                    </div>
+                    <div class="span5 control-group">
+                        <label class="control-label">{{ form_label(form.firstName) }}</label>
+                        {{ form_errors(form.firstName) }}
+                        <div class="controls">
+                            {{ form_widget(form.firstName) }}
+                        </div>
+                        <label class="control-label"> {{ form_label(form.lastName) }}</label>
+                        {{ form_errors(form.lastName) }}
+                        <div class="controls">
+                            {{ form_widget(form.lastName) }}
+                        </div>
+                        <label class="control-label"> {{ form_label(form.birthday) }}</label>
+                        {{ form_errors(form.birthday) }}
+                        <div class="controls">
+                            {{ form_widget(form.birthday) }}
+                        </div>
+                    </div>
+                    <div class="span5 control-group">
+                        <label class="control-label"> {{ form_label(form.sex) }}</label>
+                        {{ form_errors(form.sex) }}
+                        <div class="controls">
+                            {{ form_widget(form.sex) }}
+                        </div>
+                        <label class="control-label"> {{ form_label(form.avatar) }}</label>
+                        {{ form_errors(form.avatar) }}
+                        <div class="controls">
+                            {{ form_widget(form.avatar) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="col-sm-offset-2 col-sm-10 pull-right">
+                        <button type="submit" value="save" class="btn btn-success">{{ 'Enregistrer'|trans }}</button>
+                        <button type="submit" value="cancel" class="btn btn-default">{{ 'Annuler'|trans }}</button>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+
+                {# Fermeture de la balise <form> du formulaire HTML #}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

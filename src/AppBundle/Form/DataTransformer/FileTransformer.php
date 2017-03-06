@@ -16,14 +16,10 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class FileTransformer implements DataTransformerInterface
 {
-//    private $avatarDirectory;
-//
-//    public function __construct( $avatarDirectory)
-//    {
-//        print_r($avatarDirectory);exit;
-//        $this->avatarDirectory = $avatarDirectory;
-//    }
-
+    /**
+     * @param mixed $file
+     * @return null|File
+     */
     public function transform($file)
     {
         if(!empty($file)){
@@ -32,6 +28,10 @@ class FileTransformer implements DataTransformerInterface
         return null;
     }
 
+    /**
+     * @param mixed $file
+     * @return mixed
+     */
     public function reverseTransform($file)
     {
        return $file;

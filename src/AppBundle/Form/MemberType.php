@@ -35,12 +35,29 @@ class MemberType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName', TextType::class, array('label' => 'Prénom', 'required'=> true))
-            ->add('lastName', TextType::class, array('label' => 'Nom de famille', 'required'=> true))
-            ->add('birthday', BirthdayType::class, array('widget' => 'single_text', 'label' => 'Date de naissance', 'required'=> true))
-            ->add('sex', EntityType::class, array('label'=> 'Sexe', 'class' => 'AppBundle\Entity\Sex', 'multiple' => false, 'expanded' => true, 'choice_label' => 'lib' ))
-            ->add('avatar', FileType::class, array('required'=> false))
-            ->add('save', SubmitType::class);
+        $builder->add('firstName', TextType::class, array('label' => 'Prénom', 'required' => true))
+            ->add('lastName', TextType::class, array('label' => 'Nom de famille', 'required' => true))
+            ->add(
+                'birthday',
+                BirthdayType::class,
+                array('widget' => 'single_text', 'label' => 'Date de naissance', 'required' => true)
+            )
+            ->add(
+                'sex',
+                EntityType::class,
+                array(
+                    'label' => 'Sexe',
+                    'class' => 'AppBundle\Entity\Sex',
+                    'multiple' => false,
+                    'expanded' => true,
+                    'choice_label' => 'lib',
+                    'label_attr' => array(
+                        'class' => 'radio-inline',
+                    ),
+                )
+            )
+            ->add('avatar', FileType::class, array('required' => false));
+//            ->add('save', SubmitType::class);
 
         $builder->get('firstName')->addModelTransformer(new NameTransformer());
         $builder->get('lastName')->addModelTransformer(new NameTransformer());
