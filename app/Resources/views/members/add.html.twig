@@ -1,5 +1,13 @@
 {% extends '::base_connect.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@AppBundle/Resources/public/js/form/member.js'
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
 {% block breadscrums %}
     <!--breadcrumbs-->
     <div id="content-header">
