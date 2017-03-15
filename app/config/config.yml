@@ -46,6 +46,8 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     cache: false
+    form_themes:
+        - 'foundation_5_layout.html.twig'
     globals:
         avatar_directory: "%avatar_directory%"
 

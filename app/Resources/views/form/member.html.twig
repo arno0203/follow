@@ -10,7 +10,11 @@
                 <div class="row-fluid">
                     <div class="span2 control-group">
                         {% if form.avatar.vars.data is null %}
-                            {% set img = 'uploads/avatars/avatar-'~form.sex.vars.data.cod~'.jpg' %}
+                            {% if form.sex.vars.data is null %}
+                                {% set img = 'uploads/avatars/avatar-H.jpg' %}
+                            {% else %}
+                                {% set img = 'uploads/avatars/avatar-'~form.sex.vars.data.cod~'.jpg' %}
+                            {% endif %}
                         {% else %}
                             {% set img = 'uploads/avatars/'~form.avatar.vars.data.filename %}
                         {% endif %}
