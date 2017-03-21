@@ -13,3 +13,7 @@ app_judoka_add:
 app_judoka_update:
     path:      /members/update
     defaults: { _controller: AppBundle:Members:update }
+
+app_event_list:
+    path:      /events
+    defaults: { _controller: AppBundle:Events:list }

@@ -2,11 +2,15 @@
     {% set current = app.request.attributes.get('_route') %}
     {% set app_home = '' %}
     {% set app_judoka_list = '' %}
+    {% set app_event_list = '' %}
 
     {% if current == 'app_home' %} {% set app_home = 'class="active"' %} {% endif %}
+
     {% if current == 'app_judoka_list' %} {% set app_judoka_list = 'class="active"' %} {% endif %}
     {% if current == 'app_judoka_add' %} {% set app_judoka_list = 'class="active"' %} {% endif %}
     {% if current == 'app_judoka_update' %} {% set app_judoka_list = 'class="active"' %} {% endif %}
+
+    {% if current == 'app_event_list' %} {% set app_event_list = 'class="active"' %} {% endif %}
 
     <!--sidebar-menu-->
     <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
@@ -14,7 +18,7 @@
 
             <li {{ app_home|raw }}><a href="{{ url('app_home') }}"><i class="icon icon-home"></i> <span>{{ 'Home'|trans }}</span></a></li>
             <li {{ app_judoka_list|raw }}><a href="{{ url('app_judoka_list') }}"><i class="icon icon-home"></i> <span>{{ 'Judokas'|trans }}</span></a></li>
-            <li><a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a></li>
+            <li {{ app_event_list|raw }}><a href="{{ url('app_event_list') }}"><i class="icon icon-signal"></i> <span>{{ 'Evénements'|trans }}</span></a></li>
             <li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a></li>
             <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
             <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>

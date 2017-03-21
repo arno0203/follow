@@ -32,6 +32,8 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
+    session:
+        cookie_lifetime: 5
     php_errors:
         log: true
 
