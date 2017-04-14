@@ -28,15 +28,7 @@ class EventsController extends Controller
         $formEvent = $this->get('form.factory')->create(EventType::class, $event);
 
         if ($request->isMethod('POST') && $formEvent->handleRequest($request)->isValid()) {
-//            $file = $member->getAvatar();
-//            if(!empty($file)) {
-//                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-//                $file->move(
-//                    $this->getParameter('avatar_directory'),
-//                    $fileName
-//                );
-//                $member->setAvatar($fileName);
-//            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();

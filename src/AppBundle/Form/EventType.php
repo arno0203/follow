@@ -25,11 +25,24 @@ class EventType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('city', TextType::class, array('label' => 'Ville', 'required' => false))
+        $builder->add('name', TextType::class, array('label' => 'Nom de l\'événement', 'required' => true))
+            ->add('city', TextType::class, array('label' => 'Ville', 'required' => false))
             ->add(
                 'date',
                 BirthdayType::class,
                 array('widget' => 'single_text', 'label' => "Date de l'événement", 'required' => true)
+            )
+            ->add(
+                'eventType',
+                EntityType::class,
+                array(
+                    'label' => 'Type d\'événement',
+                    'class' => 'AppBundle\Entity\EventType',
+                    'multiple' => false,
+                    'expanded' => false,
+                    'choice_label' => 'lib',
+                    'placeholder' => 'Sélectionnez une valeur'
+                )
             );
     }
 

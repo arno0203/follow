@@ -127,3 +127,12 @@ VALUES
 (null,2,'-70kg',63,70,9),
 (null,2,'-78kg',70,78,9),
 (null,2,'+78kg',78,100,9);
+
+INSERT INTO `eventType`
+	(`id`,`lib`,`cod`,`ordre`,`actif`,`selected`)
+VALUES
+	(null, 'Inscription', 'inscription', 1, 1,1),
+	(null, 'Passage de grade', 'grade', 2, 1,1),
+	(null, 'Animation', 'animation', 3, 1,1),
+	(null, 'Interclub', 'interclub', 4, 1,1),
+	(null, 'Test physique', 'test_physique', 5, 1,1);
