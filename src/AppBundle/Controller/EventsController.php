@@ -12,9 +12,8 @@ class EventsController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(){
-//        $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-//        $events = $repository->findAll();
-        $events = null;
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+        $events = $repository->findAll();
 
         return $this->render('events/list.html.twig', array('events' => $events));
     }
@@ -26,7 +25,6 @@ class EventsController extends Controller
     public function addAction(Request $request){
         $event = new Event();
         $formEvent = $this->get('form.factory')->create(EventType::class, $event);
-
         if ($request->isMethod('POST') && $formEvent->handleRequest($request)->isValid()) {
 
             $em = $this->getDoctrine()->getManager();

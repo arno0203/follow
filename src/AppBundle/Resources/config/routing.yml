@@ -22,3 +22,7 @@ app_event_list:
 app_event_add:
     path:      /events/add
     defaults: { _controller: AppBundle:Events:add }
+
+app_event_update:
+    path:      /events/update
+    defaults: { _controller: AppBundle:Events:update }

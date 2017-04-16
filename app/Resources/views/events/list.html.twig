@@ -42,33 +42,28 @@
                     <table class="table table-bordered data-table">
                         <thead>
                         <tr>
-                            <th style="width: 5%"></th>
-                            <th style="width: 30%">{{ 'Prénom'|trans }}</th>
-                            <th style="width: 30%">{{ 'Nom de famille'|trans }}</th>
-                            <th style="width: 10%">{{ 'Date de naissance'|trans }}</th>
-                            <th style="width: 10%">{{ 'Sexe'|trans }}</th>
-                            <th style="width: 5%">{{ 'Action'|trans }}</th>
+                            <th style="width: 30%">{{ 'Nom de l\'événement'|trans }}</th>
+                            <th style="width: 30%">{{ 'Ville'|trans }}</th>
+                            <th style="width: 10%">{{ 'Date'|trans }}</th>
+                            <th style="width: 10%">{{ 'Type '|trans }}</th>
+                            <th style="width: 10%">{{ 'Nbr participant '|trans }}</th>
+                            <th style="width: 10%">{{ 'Action'|trans }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {#{% for member in members %}#}
-                            {#<tr class="gradeX">#}
-                                {#{% if member.avatar is empty %}#}
-                                    {#{% set img = 'uploads/avatars/avatar-'~member.sex.cod~'.jpg'  %}#}
-                                {#{% else %}#}
-                                    {#{% set img = 'uploads/avatars/'~member.avatar  %}#}
-                                {#{% endif %}#}
-                                {#<td><img class="img-circle" src="{{ img | imagine_filter('my_thumb') }}" /></td>#}
-                                {#<td>{{ member.firstName }}</td>#}
-                                {#<td>{{ member.lastName }}</td>#}
-                                {#<td>{{ member.birthday.format('d/m/Y') }}</td>#}
-                                {#<td>{{ member.sex.lib }}</td>#}
-                                {#<td>#}
-                                    {#<a href="" class="btn btn-mini btn-info"><span class="icon-eye-open"></span></a>&nbsp;#}
-                                    {#<a href="{{ url('app_judoka_update', {'id': member.id} ) }}"  class="btn btn-mini btn-warning"><span class="icon-edit"></span></a>&nbsp;#}
-                                {#</td>#}
-                            {#</tr>#}
-                        {#{% endfor %}#}
+                        {% for event in events %}
+                            <tr class="gradeX">
+                                <td>{{ event.name }}</td>
+                                <td>{{ event.city }}</td>
+                                <td>{{ event.date.format('d/m/Y') }}</td>
+                                <td>{{ event.eventType.lib }}</td>
+                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-mini btn-info"><span class="icon-eye-open"></span></a>&nbsp;
+                                    <a href="{{ url('app_event_update', {'id': event.id} ) }}"  class="btn btn-mini btn-warning"><span class="icon-edit"></span></a>&nbsp;
+                                </td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
