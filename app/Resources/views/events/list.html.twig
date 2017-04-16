@@ -60,7 +60,8 @@
                                 <td></td>
                                 <td>
                                     <a href="" class="btn btn-mini btn-info"><span class="icon-eye-open"></span></a>&nbsp;
-                                    <a href="{{ url('app_event_update', {'id': event.id} ) }}"  class="btn btn-mini btn-warning"><span class="icon-edit"></span></a>&nbsp;
+                                    <a href="" class="btn btn-mini btn-warning"><span class="icon-edit"></span></a>&nbsp;
+                                    <a href="{{ url('app_event_add_member', {'id': event.id} ) }}"  class="btn btn-mini btn-default"><span class="icon-user"></span></a>&nbsp;
                                 </td>
                             </tr>
                         {% endfor %}

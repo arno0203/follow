@@ -41,4 +41,11 @@ class EventsController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     */
+    public function addMembers(Request $request){
+
+    }
+
 }

@@ -1,28 +1,32 @@
 #HOME
 app_home:
-    path:      /
+    path: /
     defaults: { _controller: AppBundle:Default:index }
 #JUDOKA
 app_judoka_list:
-    path:      /members
+    path: /members
     defaults: { _controller: AppBundle:Members:list }
 
 app_judoka_add:
-    path:      /members/add
+    path: /members/add
     defaults: { _controller: AppBundle:Members:add }
 
 app_judoka_update:
-    path:      /members/update
+    path: /members/update
     defaults: { _controller: AppBundle:Members:update }
 #EVENT
 app_event_list:
-    path:      /events
+    path: /events
     defaults: { _controller: AppBundle:Events:list }
 
 app_event_add:
-    path:      /events/add
+    path: /events/add
     defaults: { _controller: AppBundle:Events:add }
 
 app_event_update:
-    path:      /events/update
+    path: /events/update
     defaults: { _controller: AppBundle:Events:update }
+
+app_event_add_member:
+    path: /events/add
+    defaults: { _controller: AppBundle:Events:addMembers}
