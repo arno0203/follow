@@ -20,3 +20,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     avatar_directory: '%kernel.root_dir%/../web/uploads/avatars'
+    #30 minutes
+    session_max_idle_time: 1800
