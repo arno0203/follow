@@ -1,14 +1,16 @@
 <?php
 
-namespace AppBundle\Handler;
+namespace AppBundle\EventListener;
 
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class SessionIdleHandler
+class SessionIdleListener
 {
     protected $session;
     protected $securityToken;

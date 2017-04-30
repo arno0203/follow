@@ -3,6 +3,7 @@
 #
 
 # cache, logs, etc
+app/config/parameters.yml
 app/bootstrap.php.cache
 app/bootstrap_cache.php.cache
 var/cache/*
