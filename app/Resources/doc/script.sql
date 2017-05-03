@@ -3,12 +3,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE sex;
 TRUNCATE TABLE age;
 TRUNCATE TABLE weight;
+TRUNCATE TABLE measureType;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 ALTER TABLE sex AUTO_INCREMENT=1;
 ALTER TABLE age AUTO_INCREMENT=1;
 ALTER TABLE weight AUTO_INCREMENT=1;
+ALTER TABLE measureType AUTO_INCREMENT=1;
 
 INSERT INTO `sex`
 	(`id`,`lib`,`cod`,`ordre`,`actif`,`selected`)
@@ -136,3 +138,14 @@ VALUES
 	(null, 'Animation', 'animation', 3, 1,1),
 	(null, 'Interclub', 'interclub', 4, 1,1),
 	(null, 'Test physique', 'test_physique', 5, 1,1);
+
+INSERT INTO measureType
+    (id, lib, cod, ordre, actif, selected)
+VALUES
+    (null, 'Poids', 'kg', 1,1,0),
+    (null, 'Taille', 'm', 2,1,0);
+
+INSERT INTO `measure`
+  (`id`, `value`, `date`, `measureType_id`, `member_id`)
+VALUES
+  (null, 80)

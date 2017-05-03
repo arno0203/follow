@@ -26,7 +26,7 @@ class Measure
 
     /**
      * @var string $value
-     * @ORM\Column(name="value", type="integer")
+     * @ORM\Column(name="value", type="float")
      */
     protected $value;
 
