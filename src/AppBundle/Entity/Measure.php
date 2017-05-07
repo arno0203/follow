@@ -47,10 +47,15 @@ class Measure
     protected $measureType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Member")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \member
+     *
+     * @ORM\ManyToOne(targetEntity="Member", inversedBy="measures")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     * })
      */
     protected $member;
+
 
     /**
      * Get id
@@ -65,7 +70,7 @@ class Measure
     /**
      * Set value
      *
-     * @param integer $value
+     * @param float $value
      *
      * @return Measure
      */
@@ -79,7 +84,7 @@ class Measure
     /**
      * Get value
      *
-     * @return integer
+     * @return float
      */
     public function getValue()
     {
@@ -141,7 +146,7 @@ class Measure
      *
      * @return Measure
      */
-    public function setMember(\AppBundle\Entity\Member $member)
+    public function setMember(\AppBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 

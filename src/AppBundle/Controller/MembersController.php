@@ -52,6 +52,7 @@ class MembersController extends Controller
 
     /**
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function updateAction(Request $request){
 
@@ -83,6 +84,23 @@ class MembersController extends Controller
                 'form' => $formMember->createView(),
             ));
 
-        }
-//    }
+//        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function detailAction(Request $request){
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Member');
+        $memberId = intval($request->get('id', 0));
+        $member = $repository->find($memberId);
+
+        dump($member->getMeasures());die;
+        return $this->render('members/detail.html.twig', array(
+            'measures' => $member->getMeasures(),
+        ));
+
+    }
+
 }

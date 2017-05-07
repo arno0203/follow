@@ -24,8 +24,12 @@ class Registration
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Member")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Member
+     *
+     * @ORM\ManyToOne(targetEntity="Member", inversedBy="registrations")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     * })
      */
     protected $member;
 
@@ -40,6 +44,7 @@ class Registration
      * @ORM\JoinColumn(nullable=false)
      */
     protected $result;
+
 
 
     /**
@@ -59,7 +64,7 @@ class Registration
      *
      * @return Registration
      */
-    public function setMember(\AppBundle\Entity\Member $member)
+    public function setMember(\AppBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 

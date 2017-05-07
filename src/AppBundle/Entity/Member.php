@@ -59,19 +59,23 @@ class Member
     protected $sex;
 
     /**
-     * @ORM\OneToMany(targetEntity="Measure", mappedBy="member")
+     * @var ArrayCollection $measures
+     * @ORM\OneToMany(targetEntity="Measure", mappedBy="member", fetch="EAGER")
      */
-    protected $measures;
+      protected $measures;
 
     /**
+     * @var ArrayCollection $registrations
      * @ORM\OneToMany(targetEntity="Registration", mappedBy="member")
      */
     protected $registrations;
+
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->measures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -206,23 +210,33 @@ class Member
     }
 
     /**
-     * Set measures
+     * Add measure
      *
-     * @param \AppBundle\Entity\Measure $measures
+     * @param \AppBundle\Entity\Measure $measure
      *
      * @return Member
      */
-    public function setMeasures(\AppBundle\Entity\Measure $measures)
+    public function addMeasure(\AppBundle\Entity\Measure $measure)
     {
-        $this->measures = $measures;
+        $this->measures[] = $measure;
 
         return $this;
     }
 
     /**
+     * Remove measure
+     *
+     * @param \AppBundle\Entity\Measure $measure
+     */
+    public function removeMeasure(\AppBundle\Entity\Measure $measure)
+    {
+        $this->measures->removeElement($measure);
+    }
+
+    /**
      * Get measures
      *
-     * @return \AppBundle\Entity\Measure
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getMeasures()
     {
@@ -261,29 +275,5 @@ class Member
     public function getRegistrations()
     {
         return $this->registrations;
-    }
-
-    /**
-     * Add measure
-     *
-     * @param \AppBundle\Entity\Measure $measure
-     *
-     * @return Member
-     */
-    public function addMeasure(\AppBundle\Entity\Measure $measure)
-    {
-        $this->measures[] = $measure;
-
-        return $this;
-    }
-
-    /**
-     * Remove measure
-     *
-     * @param \AppBundle\Entity\Measure $measure
-     */
-    public function removeMeasure(\AppBundle\Entity\Measure $measure)
-    {
-        $this->measures->removeElement($measure);
     }
 }
