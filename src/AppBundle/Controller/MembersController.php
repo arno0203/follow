@@ -92,11 +92,10 @@ class MembersController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function detailAction(Request $request){
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Member');
-        $memberId = intval($request->get('id', 0));
-        $member = $repository->find($memberId);
 
-        dump($this->get('app.manager.member')->getWeights());die;
+        $memberId = intval($request->get('id', 0));
+
+        dump($this->get('app.manager.member')->getWeights($memberId));die;
         return $this->render('members/detail.html.twig', array(
             'measures' => $member->getMeasures(),
         ));

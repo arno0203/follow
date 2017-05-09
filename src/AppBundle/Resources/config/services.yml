@@ -1,6 +1,6 @@
 services:
 
 # Manager
-    app.manager.members:
+    app.manager.member:
         class: AppBundle\Manager\MemberManager
-        arguments: ["@"]
+        arguments: ["@doctrine.orm.entity_manager"]
