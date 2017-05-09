@@ -1,0 +1,6 @@
+services:
+
+# Manager
+    app.manager.members:
+        class: AppBundle\Manager\MemberManager
+        arguments: ["@"]

@@ -96,7 +96,7 @@ class MembersController extends Controller
         $memberId = intval($request->get('id', 0));
         $member = $repository->find($memberId);
 
-        dump($member->getMeasures());die;
+        dump($this->get('app.manager.member')->getWeights());die;
         return $this->render('members/detail.html.twig', array(
             'measures' => $member->getMeasures(),
         ));
