@@ -2,10 +2,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@AppBundle/Resources/public/js/form/member.js'
-    %}
-    <script src="{{ asset_url }}" type="text/javascript"></script>
-    {% endjavascripts %}
 {% endblock %}
 
 {% block breadscrums %}
@@ -13,10 +9,10 @@
     <div id="content-header">
         <div id="breadcrumb"><a href="{{ url('app_home') }}" title="Go to Home" class="tip-bottom"><i
                         class="icon-home"></i> {{ 'Home'|trans }}</a> <a
-                    href="{{ url('app_judoka_list') }}">{{ 'Judokas'|trans }}</a> <a href="#"
-                                                                                     class="current">{{ 'Ajouter un membre'|trans }}</a>
+                    href="{{ url('app_event_list') }}">{{ 'Evénements'|trans }}</a> <a href="#"
+                                                                                     class="current">{{ 'Ajouter un événement'|trans }}</a>
         </div>
-        <h1>{{ 'Judokas'|trans }}</h1>
+        <h1>{{ 'Evénements'|trans }}</h1>
     </div>
     <!--End-breadcrumbs-->
 {% endblock %}
