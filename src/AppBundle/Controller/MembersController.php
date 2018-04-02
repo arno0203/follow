@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Member;
 use AppBundle\Form\MemberType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MembersController extends Controller
 {
@@ -95,11 +97,29 @@ class MembersController extends Controller
 
         $memberId = intval($request->get('id', 0));
 
-        dump($this->get('app.manager.member')->getWeights($memberId));die;
+//        dump($this->get('app.manager.member')->getWeights($memberId));die;
         return $this->render('members/detail.html.twig', array(
-            'measures' => $member->getMeasures(),
+            'memberId' => $memberId,
         ));
 
+    }
+
+    /**
+     * @param Request $request
+     * @return $this
+     * @throws \Exception
+     */
+    public function weightsAction(Request $request){
+        if($request->isXmlHttpRequest()) {
+            $memberId = intval($request->get('memberId', 0));
+            $weights = $this->get('app.manager.member')->getWeights($memberId)->toArray();
+
+            $response = new JsonResponse();
+
+            return $response->setData(['weights' => $weights]);
+        }else{
+            throw new \Exception('No Ajax Call');
+        }
     }
 
 }

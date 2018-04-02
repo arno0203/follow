@@ -19,6 +19,13 @@ app_judoka_detail:
     path: /members/detail
     defaults: { _controller: AppBundle:Members:detail }
 
+#AJAX
+app_judoka_ajax_weight:
+    path: /members/weights
+    defaults: { _controller: AppBundle:Members:weights }
+    options:
+        expose: true
+
 #EVENT
 app_event_list:
     path: /events
