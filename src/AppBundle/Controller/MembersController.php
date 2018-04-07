@@ -113,10 +113,15 @@ class MembersController extends Controller
         if($request->isXmlHttpRequest()) {
             $memberId = intval($request->get('memberId', 0));
             $weights = $this->get('app.manager.member')->getWeights($memberId)->toArray();
+            $minMax = $this->get('app.manager.measure')->getMinMax($weights);
 
             $response = new JsonResponse();
 
-            return $response->setData(['weights' => $weights]);
+            return $response->setData([
+                'weights' => $weights
+                , 'max' => $minMax['max']
+                , 'min' => $minMax['min']
+            ]);
         }else{
             throw new \Exception('No Ajax Call');
         }

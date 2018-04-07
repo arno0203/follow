@@ -12,7 +12,6 @@ $(document).ready(function(){
         cache: false,
         success: function(data){
             weights = data['weights'];
-            console.log(weights);
             var dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
 
             var plot = $.plot($(".chart"),
@@ -22,7 +21,7 @@ $(document).ready(function(){
                         points: { show: true }
                     },
                     grid: { hoverable: true, clickable: true },
-                    yaxis: { min: 75, max: 85 },
+                    yaxis: { min: data['min']-1, max: data['max']+1 },
                     xaxes: [{
                         mode: "time",
                         timeformat: "%0d/%0m/%y"
@@ -46,8 +45,8 @@ $(document).ready(function(){
 				});
                 var x = item.datapoint[0].toFixed(2),
 					y = item.datapoint[1].toFixed(2);
-
-                maruti.flot_tooltip(item.pageX, item.pageY,item.series.label + " of " + x + " = " + y);
+                var d = new Date(item.datapoint[0]);
+                maruti.flot_tooltip(item.pageX, item.pageY,item.series.label + " du " + d.toLocaleDateString()+ " = " + y);
             }
 
         } else {
@@ -57,7 +56,17 @@ $(document).ready(function(){
             previousPoint = null;
         }
     });
-    
+
+    maruti = {
+        // === Tooltip for flot charts === //
+        flot_tooltip: function(x, y, contents) {
+
+            $('<div id="tooltip">' + contents + '</div>').css( {
+                top: y + 5,
+                left: x + 5
+            }).appendTo("body").fadeIn(200);
+        }
+    }
 
 	
 });
